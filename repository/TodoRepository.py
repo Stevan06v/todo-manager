@@ -64,7 +64,8 @@ class TodoRepository(IRepository):  # implements IRepo
                 return
         raise ValueError("Todo item not found")
 
-    def delete(self, id):
-        pass
-
-
+    def delete(self, todo_id):
+        for todo in self.todos:
+            if todo.id == todo_id:
+                self.todos.remove(todo)
+                self.save_to_json()
